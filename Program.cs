@@ -1,6 +1,7 @@
 ﻿class Donation
 {
-    static Dictionary<string, (double collected, double target)> collections = new Dictionary<string, (double, double)>();
+    
+    static Dictionary<string, (double collected, double target, List<double> donations)> collections = new Dictionary<string, (double, double, List<double>)>();
     
     public static void Main()
     {
@@ -66,7 +67,7 @@
         {
             Console.WriteLine("Invalid ammount :l");
         }
-        collections.Add(name, (0, target));
+        collections.Add(name, (0, target, new List<double>()));
         Console.WriteLine($"Collecion {name} created :D");
     }
 
@@ -90,12 +91,13 @@
                 Console.WriteLine("Invalid ammount :l");
             }
             
-            var(collected, target) = collections[name];
+            var(collected, target, donations) = collections[name];
             collected += donateAmmount;
+            donations.Add(donateAmmount);
             if (collected >= target)
                 collected = donateAmmount;
             
-            collections[name] = (collected, target);
+            collections[name] = (collected, target, donations);
             Console.WriteLine($"You donnate {donateAmmount}$ to {name} :3");
             ProgressBar(name, collected, target);
         }
