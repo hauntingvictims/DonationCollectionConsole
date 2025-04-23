@@ -1,3 +1,3 @@
-Simple Donation Colletion Console App
+## Simple Donation Colletion Console App
 
-Using C#
+Using C# only
